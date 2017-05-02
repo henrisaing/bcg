@@ -1,0 +1,2 @@
+# bcg
+bingo card generator
