@@ -15,13 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// groups
 Route::get('/groups', 'HomeController@groups');
 Route::get('/group/new', 'HomeController@new');
 Route::post('/group/create', 'HomeController@create');
 
+// items
 Route::get('/group/{group}/items', 'HomeController@items');
 Route::get('/group/{group}/items/new', 'HomeController@newItem');
 Route::post('/group/{group}/items/create', 'HomeController@createItem');
+
+// cards
+Route::get('/group/{group}/generate', 'HomeController@generateCard');
 
 Auth::routes();
 

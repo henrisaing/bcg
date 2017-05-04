@@ -61,3 +61,20 @@ a.navbar-brand:hover{
     height:90%;
   }
 }
+
+.bingo-table{
+  /*width:100%;*/
+  margin-left:auto;
+  margin-right:auto;
+}
+
+table.bingo-table td{
+  border:1px solid black;
+  width:75px;
+  height:75px;
+  text-align:center;
+}
+
+table.bingo-table th{
+  text-align:center;
+}

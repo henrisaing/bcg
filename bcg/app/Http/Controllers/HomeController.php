@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Group;
 use App\Item;
 use Auth;
+use App\Card;
 
 class HomeController extends Controller
 {
@@ -69,6 +70,28 @@ class HomeController extends Controller
   public function newItem(Group $group){
     $view = view('items.new', [
       'group' => $group,
+    ]);
+
+    return $view;
+  }
+
+  public function createItem(Request $request, Group $group){
+    $group->items()->create([
+      'name' => $request->name,
+      'info' => $request->info,
+      'chance' => $request->chance,
+    ]);
+    $view = redirect('/group/'.$group->id.'/items');
+
+    return $view;
+  }
+
+  public function generateCard(Group $group){
+
+    $view = view('card.bingo', [
+      'group' => $group,
+      'items' => $group->items()->get(),
+      'card' => Card::generateCard($group),
     ]);
 
     return $view;
