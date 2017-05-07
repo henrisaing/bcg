@@ -24,6 +24,10 @@ $(document).ready(function(){
     });
   });
 
+  // $('.bingo-table td').click(function(){
+  //   $(this).toggleClass('green',500);
+  // });
+
   // $('.preview-thumb').each(function(){
   //   var siteId = $(this).attr('id'); 
   //   console.log(siteId);
@@ -33,4 +37,8 @@ $(document).ready(function(){
 
   //   });
   // });
+});
+
+$(document).on('click', '.bingo-table td', function(){
+  $(this).toggleClass('green',500);
 });

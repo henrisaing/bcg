@@ -27,6 +27,7 @@ Route::post('/group/{group}/items/create', 'HomeController@createItem');
 
 // cards
 Route::get('/group/{group}/generate', 'HomeController@generateCard');
+Route::get('group/{group}/gen', 'HomeController@genCard');
 
 Auth::routes();
 

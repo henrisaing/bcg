@@ -96,4 +96,14 @@ class HomeController extends Controller
 
     return $view;
   }
+
+  public function genCard(Group $group){
+    $view = view('card.generate', [
+      'group' => $group,
+      'items' => $group->items()->get(),
+      'card' => Card::generateCard($group),
+    ]);
+
+    return $view;
+  }
 }
