@@ -5,9 +5,18 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Group;
 use App\Item;
+use App\User;
 
 class Card extends Model
 {
+  protected $fillable = [
+    'slots', 'styles',
+  ];
+
+  public function user(){
+    return $this->belongsTo(User::class);
+  }
+
     //
   public static function generateCard(Group $group){
     $items = $group->items()->get();

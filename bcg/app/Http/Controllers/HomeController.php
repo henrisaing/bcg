@@ -106,4 +106,33 @@ class HomeController extends Controller
 
     return $view;
   }
+
+  public function saveCard(Request $request){
+    // $serial = serialize($request->input('slot'));
+    // $unserial = unserialize($serial);
+    $card = Auth::user()->cards()->create([
+      'slots' => serialize($request->input('slot')),
+      'styles' => serialize($request->input('style')),
+    ]);
+    // return $serial;
+    $view = redirect('/card/'.$card->id);
+    return $view;
+  }
+
+  public function userCard(Card $card){
+    $slots = unserialize($card->slots);
+    $styles = unserialize($card->styles);
+
+    $chunkySlots = array_chunk($slots, 5);
+    $chunkyStyles = array_chunk($styles, 5);
+
+    $view = view('card.single', [
+      'slots' => $chunkySlots,
+      'styles' => $chunkyStyles,
+      'card' => $card,
+    ]);
+
+    return $view;
+    // return $card;
+  }
 }

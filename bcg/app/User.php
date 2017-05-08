@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Group;
+use App\Card;
 
 class User extends Authenticatable
 {
@@ -30,5 +31,9 @@ class User extends Authenticatable
 
     public function groups(){
         return $this->hasMany(Group::class);
+    }
+
+    public function cards(){
+        return $this->hasMany(Card::class);
     }
 }

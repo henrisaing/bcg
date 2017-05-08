@@ -28,6 +28,8 @@ Route::post('/group/{group}/items/create', 'HomeController@createItem');
 // cards
 Route::get('/group/{group}/generate', 'HomeController@generateCard');
 Route::get('group/{group}/gen', 'HomeController@genCard');
+Route::post('/card/new', 'HomeController@saveCard');
+Route::get('/card/{card}', 'HomeController@userCard');
 
 Auth::routes();
 

@@ -40,5 +40,18 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '.bingo-table td', function(){
-  $(this).toggleClass('green',500);
+  var id = $(this).attr('position');
+  // $(this).toggleClass('green',500);
+  // $('#'+)
+  if($(this).hasClass('green')){
+    $(this).removeClass('green', 500);
+    $(this).addClass('none', 500);
+    $('#'+id).val('none');
+    // console.log('none');
+  }else{
+    $(this).removeClass('none', 500);
+    $(this).addClass('green', 500);
+    $('#'+id).val('green');
+    // console.log('green');
+  }
 });
