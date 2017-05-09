@@ -49,8 +49,17 @@ class HomeController extends Controller
   }
 
   public function groups(){
+    $chunkyGroups = Card::chunkIdWithName(Auth::user()->groups()->get(),5);
+    // $view = view('groups.index', [
+    //   'groups' => Auth::user()->groups()->get(),
+    //   'chunk' => $chunkyGroups,
+    // ]);
+
     $view = view('groups.index', [
-      'groups' => Auth::user()->groups()->get()
+      'chunks' => $chunkyGroups,
+      'title' => 'GROUP',
+      'url1' => '/group/',
+      'url2' => '/items',
     ]);
 
     return $view;
@@ -59,10 +68,20 @@ class HomeController extends Controller
   // items
 
   public function items(Group $group){
-    $view = view('items.index',[
-      'items' => $group->items()->get(),
-      'group' => $group
+    $chunkyItems = Card::chunkIdWithName($group->items()->get(),5);
+
+    $view = view('items.index', [
+      'chunks' => $chunkyItems,
+      'title' => 'ITEMS',
+      'url1' => 'nolink',
+      'url2' => 'nolink',
+      'group' => $group,
     ]);
+
+    // $view = view('items.index',[
+    //   'items' => $group->items()->get(),
+    //   'group' => $group
+    // ]);
 
     return $view;
   }
@@ -108,13 +127,12 @@ class HomeController extends Controller
   }
 
   public function saveCard(Request $request){
-    // $serial = serialize($request->input('slot'));
-    // $unserial = unserialize($serial);
     $card = Auth::user()->cards()->create([
       'slots' => serialize($request->input('slot')),
       'styles' => serialize($request->input('style')),
     ]);
-    // return $serial;
+    //serialize unideal, but quick functional and dirty
+    //good enough for now
     $view = redirect('/card/'.$card->id);
     return $view;
   }
@@ -134,5 +152,25 @@ class HomeController extends Controller
 
     return $view;
     // return $card;
+  }
+
+  public function updateCard(Card $card, Request $request){
+    $card->update([
+      'slots' => serialize($request->input('slot')),
+      'styles' => serialize($request->input('style')),
+    ]);
+    $view = redirect('/card/'.$card->id);
+
+    return $view;
+  }
+
+  public function myCards(){
+    $cards = Card::myCards(5);
+  
+    $view = view('card.cards', [
+      'cards' => $cards,
+    ]);
+
+    return $view;
   }
 }

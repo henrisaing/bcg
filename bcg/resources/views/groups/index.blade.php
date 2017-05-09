@@ -3,13 +3,15 @@
 @section('content')
 
 <a func="/group/new" class="lightbox-open">[create group]</a>
-<?php foreach ($groups as $group): ?>
-  <br>
-  <a href="/group/{{$group->id}}/items">
-    {{$group->name}} |
-    {{$group->info}} |
-    {{$group->type}} |
-    </a>
-<?php endforeach ?>
 
+@component('menues.bingo-menu', [
+  'chunks' => $chunks,
+  'title' => 'GROUP',
+  'url1' => '/group/',
+  'url2' => '/items',
+])
+
+@endcomponent
+
+<h3>Debug</h3>
 @endsection

@@ -30,6 +30,8 @@ Route::get('/group/{group}/generate', 'HomeController@generateCard');
 Route::get('group/{group}/gen', 'HomeController@genCard');
 Route::post('/card/new', 'HomeController@saveCard');
 Route::get('/card/{card}', 'HomeController@userCard');
+Route::post('/card/{card}/update', 'HomeController@updateCard');
+Route::get('/mycards', 'HomeController@myCards');
 
 Auth::routes();
 

@@ -18,7 +18,7 @@
         <?php foreach ($row as $index => $slot): ?>
           <td position={{$counter}} class="{{$styles[$key][$index]}}">{{$slot}}</td>
           <input type="hidden" name="slot[]" value="{{$slot}}">
-          <input type="hidden" id="{{$counter}}" name="style[]" value="none">
+          <input type="hidden" id="{{$counter}}" name="style[]" value="{{$styles[$key][$index]}}">
           <?php $counter++; ?>
         <?php endforeach ?>
       </tr>
@@ -28,5 +28,6 @@
 
 </form>
 
+<h3>debug</h3>
 <?php print_r($styles) ?>
 @endsection
