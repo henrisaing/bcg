@@ -27,7 +27,8 @@
 </table>
 
 </form>
-
-<h3>debug</h3>
-<?php print_r($styles) ?>
+<?php if(App::environment('local')): ?>
+  <h3>debug</h3>
+  <?php print_r($styles) ?>
+<?php endif; ?>
 @endsection

@@ -8,15 +8,17 @@
         <title>BCG</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
+                background-image: url('img/tile.jpg');
+                background-position: center;
                 background-color: #fff;
-                color: #636b6f;
+                color: #000;
                 font-family: 'Raleway', sans-serif;
-                font-weight: 100;
+                font-weight: 300;
                 height: 100vh;
                 margin: 0;
             }
@@ -43,14 +45,16 @@
 
             .content {
                 text-align: center;
+                z-index:2;
             }
 
             .title {
                 font-size: 84px;
+
             }
 
             .links > a {
-                color: #636b6f;
+                color: #4488f4;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -62,10 +66,25 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .white-cover{
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                background-color:#fff;
+                opacity: 0.4;
+                z-index:1;
+            }
+
+            .z2{
+                z-index:2;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+    <div class="white-cover"></div>
+        <div class="z2 flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())

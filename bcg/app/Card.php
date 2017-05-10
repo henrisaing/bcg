@@ -76,4 +76,12 @@ class Card extends Model
 
     return array_chunk( $return, $int, true);
   }
+
+  public static function getGroups(){
+    $groups = Group::where('type', 'global')
+            ->orWhere('user_id', Auth::user()->id)
+            ->get();
+
+    return $groups;
+  }
 }

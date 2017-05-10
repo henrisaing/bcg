@@ -35,8 +35,10 @@
   </tbody>
 </table>
 
-<h3>debug</h3>
+<?php if(App::environment('local')): ?>
+  <h3>debug</h3>
 
-<?php print_r($cards) ?> 
+  <?php print_r($cards) ?> 
+<?php endif; ?>
 
 @endsection

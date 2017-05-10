@@ -4,7 +4,7 @@ $title (string)
 $url1 (start of url before id)
 $url1 (end of url after id)
 -->
-  <table class="menu-table">
+<table class="menu-table">
   <thead>
     <?php for($i = 0; $i < strlen($title); $i++): ?>
       <th>{{$title[$i]}}</th>

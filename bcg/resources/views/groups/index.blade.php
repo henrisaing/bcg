@@ -2,7 +2,10 @@
 @extends('layouts.app')
 @section('content')
 
+<p class="center-text">
+  
 <a func="/group/new" class="lightbox-open">[create group]</a>
+</p>
 
 @component('menues.bingo-menu', [
   'chunks' => $chunks,
@@ -12,6 +15,7 @@
 ])
 
 @endcomponent
-
-<h3>Debug</h3>
+<?php if(App::environment('local')): ?>
+  <h3>Debug</h3>
+<?php endif; ?>
 @endsection

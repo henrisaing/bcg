@@ -27,7 +27,10 @@ class HomeController extends Controller
    */
   public function index()
   {
-    return view('home');
+    
+    return view('home', [
+      'groups' => Card::getGroups(),
+    ]);
   }
 
   public function new(){
@@ -49,7 +52,7 @@ class HomeController extends Controller
   }
 
   public function groups(){
-    $chunkyGroups = Card::chunkIdWithName(Auth::user()->groups()->get(),5);
+    $chunkyGroups = Card::chunkIdWithName(Card::getGroups(),5);
     // $view = view('groups.index', [
     //   'groups' => Auth::user()->groups()->get(),
     //   'chunk' => $chunkyGroups,
