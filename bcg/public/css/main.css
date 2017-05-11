@@ -50,9 +50,6 @@ a.lightbox-close{
   height:200px;
 }
 
-a.navbar-brand:hover{
-}
-
 .bingo-table, .menu-table{
   /*width:100%;*/
   margin-left:auto;
@@ -94,6 +91,21 @@ div.full{
 
 .green{
   background-color:#33cc66 !important;
+  color:black;
+}
+
+.red{
+  background-color:#ef2f43 !important;
+  color:black;
+}
+
+.blue{
+  background-color:#33ccff !important;
+  color:black;
+}
+
+.orange{
+  background-color:#ef9637 !important;
   color:black;
 }
 

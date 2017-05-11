@@ -23,20 +23,6 @@ $(document).ready(function(){
       $("#main").html(data);
     });
   });
-
-  // $('.bingo-table td').click(function(){
-  //   $(this).toggleClass('green',500);
-  // });
-
-  // $('.preview-thumb').each(function(){
-  //   var siteId = $(this).attr('id'); 
-  //   console.log(siteId);
-  //   $.get('/site/'+siteId+'/preview', function(data){
-  //     $('#'+siteId).html(data);
-  //     console.log('abc');
-
-  //   });
-  // });
 });
 
 $(document).on('click', '.bingo-table td', function(){
@@ -55,3 +41,38 @@ $(document).on('click', '.bingo-table td', function(){
     // console.log('green');
   }
 });
+
+$('.ajax-form').on('submit', function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+      header:$('meta[name="csrf-token"]').attr('content')
+    });
+    
+    // console.log(e);
+    var id = $(this).attr('formId');
+    var url = $(this).attr('action');
+    console.log("URL:"+url);
+    // $.post($(this).attr('func'), function(data){
+    //   console.log(data);
+    //   $('#'+id).html(data);
+    // });
+    $.ajax({
+      type:'post',
+      url: url,
+      data: $(this).serialize(),
+      header:$('meta[name="csrf-token"]').attr('content'),
+      dataType: 'json',
+      success:function(response){
+        //disable radio buttons and save button 
+        $('#'+id+' input[type="radio"], #'+id+' button.save').each(function(){
+          // disable for debugging
+          // $(this).attr('disabled', true);
+          console.log(response.correct);
+        });
+      },
+      error:function(data){
+        console.log("error:"+data);
+      }
+    });
+
+  });

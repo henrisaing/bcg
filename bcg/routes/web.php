@@ -19,11 +19,15 @@ Route::get('/', function () {
 Route::get('/groups', 'HomeController@groups');
 Route::get('/group/new', 'HomeController@new');
 Route::post('/group/create', 'HomeController@create');
+Route::get('/group/{group}/edit', 'HomeController@editGroup');
+Route::delete('/group/{group}/delete', 'HomeController@deleteGroup');
 
 // items
 Route::get('/group/{group}/items', 'HomeController@items');
 Route::get('/group/{group}/items/new', 'HomeController@newItem');
 Route::post('/group/{group}/items/create', 'HomeController@createItem');
+Route::post('/item/{item}/update', 'HomeController@updateItem');
+Route::get('/item/{item}/edit', 'HomeController@editItem');
 
 // cards
 Route::get('/group/{group}/generate', 'HomeController@generateCard');

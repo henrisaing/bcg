@@ -15,7 +15,13 @@ $url1 (end of url after id)
       <tr>
         <?php foreach ($chunk as $key => $value): ?>
           <td>
-          <?php if ($value != '' && $url1 != 'nolink'): ?>
+          <?php if (isset($ajax) && $value != '' && $url1 != 'nolink'): ?>
+            <a class="lightbox-open" func="{{$url1}}{{$key}}{{$url2}}">
+              <div class="full center-div">
+              {{$value}}
+            </div>
+            </a>
+          <?php elseif ($value != '' && $url1 != 'nolink'): ?>
             <a href="{{$url1}}{{$key}}{{$url2}}">
             <div class="full center-div">
               {{$value}}

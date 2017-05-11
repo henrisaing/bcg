@@ -39,6 +39,21 @@ class HomeController extends Controller
     return $view;
   }
 
+  public function editGroup(Group $group){
+    $view = view('groups.edit', [
+      'group' => $group,
+    ]);
+    return $view;
+  }
+
+  public function deleteGroup(Group $group){
+    $group->delete();
+
+    $view = redirect('/groups');
+
+    return $view;
+  }
+
   public function create(Request $request){
     Auth::user()->groups()->create([
       'name' => $request->name,
@@ -63,6 +78,7 @@ class HomeController extends Controller
       'title' => 'GROUP',
       'url1' => '/group/',
       'url2' => '/items',
+      'groups' => Card::getGroups(),
     ]);
 
     return $view;
@@ -76,8 +92,8 @@ class HomeController extends Controller
     $view = view('items.index', [
       'chunks' => $chunkyItems,
       'title' => 'ITEMS',
-      'url1' => 'nolink',
-      'url2' => 'nolink',
+      'url1' => '/item/',
+      'url2' => '/edit',
       'group' => $group,
     ]);
 
@@ -96,6 +112,13 @@ class HomeController extends Controller
 
     return $view;
   }
+  public function editItem(Item $item){
+    $view = view('items.edit', [
+      'item' => $item,
+    ]);
+
+    return $view;
+  }
 
   public function createItem(Request $request, Group $group){
     $group->items()->create([
@@ -104,6 +127,18 @@ class HomeController extends Controller
       'chance' => $request->chance,
     ]);
     $view = redirect('/group/'.$group->id.'/items');
+
+    return $view;
+  }
+
+  public function updateItem(Item $item, Request $request){
+    $item->update([
+      'name' => $request->name,
+      'info' => $request->info,
+      'chance' => $request->chance,
+    ]);
+
+    $view = redirect('/group/'.$item->group()->get()[0]->id.'/items');
 
     return $view;
   }
