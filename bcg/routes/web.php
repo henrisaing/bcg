@@ -36,6 +36,7 @@ Route::post('/card/new', 'HomeController@saveCard');
 Route::get('/card/{card}', 'HomeController@userCard');
 Route::post('/card/{card}/update', 'HomeController@updateCard');
 Route::get('/mycards', 'HomeController@myCards');
+Route::post('/card/{card}/ajax-post', 'HomeController@ajaxPost');
 
 Auth::routes();
 

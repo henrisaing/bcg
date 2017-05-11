@@ -40,6 +40,7 @@ $(document).on('click', '.bingo-table td', function(){
     $('#'+id).val('green');
     // console.log('green');
   }
+  $('#form').submit();
 });
 
 $('.ajax-form').on('submit', function(e){
@@ -48,7 +49,7 @@ $('.ajax-form').on('submit', function(e){
       header:$('meta[name="csrf-token"]').attr('content')
     });
     
-    // console.log(e);
+    console.log(e);
     var id = $(this).attr('formId');
     var url = $(this).attr('action');
     console.log("URL:"+url);
@@ -63,12 +64,7 @@ $('.ajax-form').on('submit', function(e){
       header:$('meta[name="csrf-token"]').attr('content'),
       dataType: 'json',
       success:function(response){
-        //disable radio buttons and save button 
-        $('#'+id+' input[type="radio"], #'+id+' button.save').each(function(){
-          // disable for debugging
-          // $(this).attr('disabled', true);
           console.log(response.correct);
-        });
       },
       error:function(data){
         console.log("error:"+data);

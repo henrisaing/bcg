@@ -45,6 +45,18 @@ a.lightbox-close{
   display:none;
 }
 
+table td button, table th button{ 
+  background:none;
+  border: none;
+  color: #000000;
+  text-decoration: underline;
+  cursor: pointer; 
+  width:80px;
+  height:80px;
+}
+a{
+  cursor:pointer;
+}
 .preview-thumb{
   width:80%;
   height:200px;

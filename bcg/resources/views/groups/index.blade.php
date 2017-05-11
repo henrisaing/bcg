@@ -24,19 +24,24 @@
             <div class="full center-div">items</div>
           </a>
         </td>
+        <td>
+          <a href="/group/{{$group->id}}/generate">
+            <div class="full center-div">generate card</div>
+          </a>
+        </td>
         <td class="orange">
           <a func="/group/{{$group->id}}/edit" class="lightbox-open">
             <div class="full center-div">edit</div>
           </a>
         </td>
-        <td></td>
         <td class="red">
           <form id="delete-{{$group->id}}" action="/group/{{$group->id}}/delete" method="post">
             {{csrf_field()}}
             {{method_field('delete')}}
-            <a href="#" onclick="document.getElementById('delete-{{$group->id}}').submit();">
-              <div class="full center-div">delete</div>
-            </a>
+            <!-- <a href="#" onclick="document.getElementById('delete-{{$group->id}}').submit();"> -->
+              <!-- <div class="full center-div">delete</div> -->
+            <!-- </a> -->
+            <button type="submit">destroy</button>
           </form>
         </td>
       </tr>

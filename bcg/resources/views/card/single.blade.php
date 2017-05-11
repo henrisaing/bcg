@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<form action="/card/{{$card->id}}/update" method="post">
+<form action="/card/{{$card->id}}/update" method="post" formId="{{$card->id}}" func="/card/{{$card->id}}/ajax-post" id="form" class="ajax-form">
 {{csrf_field()}}
-<button type="submit">update card</button>
+<!-- <button type="submit">update card</button> -->
 <table class="bingo-table">
   <thead>
     <th>B</th>

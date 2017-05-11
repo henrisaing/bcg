@@ -202,6 +202,15 @@ class HomeController extends Controller
     return $view;
   }
 
+  public function ajaxPost(Card $card, Request $request){
+    $data = $card->update([
+      'slots' => serialize($request->input('slot')),
+      'styles' => serialize($request->input('style')),
+    ]);
+    
+    return response()->json($data, 200);
+  }
+
   public function myCards(){
     $cards = Card::myCards(5);
   
