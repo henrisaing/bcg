@@ -1,6 +1,8 @@
 <form action="/card/new" method="post">
 {{csrf_field()}}
-<button type="submit">save card</button>
+<p class="center-text">
+  <button type="submit" class="link blue-text">[save card to account]</button>
+</p>
 <table class="bingo-table">
   <thead>
     <th>B</th>

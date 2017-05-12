@@ -20,6 +20,7 @@ Route::get('/groups', 'HomeController@groups');
 Route::get('/group/new', 'HomeController@new');
 Route::post('/group/create', 'HomeController@create');
 Route::get('/group/{group}/edit', 'HomeController@editGroup');
+Route::post('/group/{group}/update', 'HomeController@updateGroup');
 Route::delete('/group/{group}/delete', 'HomeController@deleteGroup');
 
 // items

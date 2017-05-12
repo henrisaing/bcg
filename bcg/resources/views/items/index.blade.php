@@ -2,8 +2,12 @@
 @extends('layouts.app')
 @section('content')
 <p class="center-text">
+
+  <?php if($rights): ?>
   <a func="/group/{{$group->id}}/items/new" class="lightbox-open">[add item]</a>
-  <a href="/group/{{$group->id}}/generate">[make card]</a>
+  <?php endif; ?>
+
+  <a href="/group/{{$group->id}}/generate">[generate bingo card]</a>
 </p>
 
 @component('menues.bingo-menu', [
@@ -11,7 +15,7 @@
   'title' => $title,
   'url1' => $url1,
   'url2' => $url2,
-  'ajax' => 'true'
+  'ajax' => 'true',
 ])
 
 @endcomponent

@@ -49,14 +49,31 @@ table td button, table th button{
   background:none;
   border: none;
   color: #000000;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer; 
   width:80px;
   height:80px;
 }
+
+button.link{
+  background:none;
+  border: none;
+  color: #0099ff;
+  text-decoration: none;
+  cursor: pointer; 
+}
+button.link:hover{
+  color: #0066ff !important;
+  text-decoration: underline;
+}
 a{
   cursor:pointer;
 }
+
+.blue-text{
+  color:#0099ff !important;
+}
+
 .preview-thumb{
   width:80%;
   height:200px;
@@ -77,6 +94,7 @@ table.bingo-table td, table.menu-table td{
   text-align:center;
   background-color:#eee;
   color:black;
+  cursor:pointer;
   /*margin:5px;*/
 }
 

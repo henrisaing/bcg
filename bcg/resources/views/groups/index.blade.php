@@ -17,6 +17,7 @@
   </thead>
   <tbody>
     <?php foreach ($groups as $group): ?>
+      <?php $rights = App\AuthCheck::groupRights($group); ?>
       <tr>
         <td class="green">{{$group->name}}</td>
         <td>
@@ -29,12 +30,17 @@
             <div class="full center-div">generate card</div>
           </a>
         </td>
+
         <td class="orange">
+        <?php if($rights): ?>
           <a func="/group/{{$group->id}}/edit" class="lightbox-open">
             <div class="full center-div">edit</div>
           </a>
+        <?php endif; ?>
         </td>
+
         <td class="red">
+          <?php if($rights): ?>
           <form id="delete-{{$group->id}}" action="/group/{{$group->id}}/delete" method="post">
             {{csrf_field()}}
             {{method_field('delete')}}
@@ -43,7 +49,9 @@
             <!-- </a> -->
             <button type="submit">destroy</button>
           </form>
+        <?php endif; ?>
         </td>
+
       </tr>
     <?php endforeach ?>
   </tbody>

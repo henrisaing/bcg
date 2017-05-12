@@ -7,6 +7,7 @@ use App\Group;
 use App\Item;
 use Auth;
 use App\Card;
+use App\AuthCheck;
 
 class HomeController extends Controller
 {
@@ -34,7 +35,9 @@ class HomeController extends Controller
   }
 
   public function new(){
-    $view = view('groups.new');
+    $view = view('groups.new',[
+      'admin' => AuthCheck::isAdmin(),
+    ]);
 
     return $view;
   }
@@ -42,12 +45,16 @@ class HomeController extends Controller
   public function editGroup(Group $group){
     $view = view('groups.edit', [
       'group' => $group,
+      'rights' => AuthCheck::groupRights($group),
+      'admin' => AuthCheck::isAdmin(),
     ]);
     return $view;
   }
 
   public function deleteGroup(Group $group){
-    $group->delete();
+    if(AuthCheck::groupRights($group)):
+      $group->delete();
+    endif;
 
     $view = redirect('/groups');
 
@@ -55,14 +62,43 @@ class HomeController extends Controller
   }
 
   public function create(Request $request){
+    $type = 'private';
+
+    if($request->type == 'global' && AuthCheck::isAdmin() == false):
+      $type = 'private';
+    else:
+      $type = $request->type;
+    endif;
+
     Auth::user()->groups()->create([
       'name' => $request->name,
       'info' => $request->info,
-      'type' => $request->type,
+      'type' => $type,
     ]);
 
     $view = redirect('/groups');
 
+    return $view;
+  }
+
+  public function updateGroup(Request $request, Group $group){
+    $type = 'private';
+
+    if($request->type == 'global' && AuthCheck::isAdmin() == false):
+      $type = 'private';
+    else:
+      $type = $request->type;
+    endif;
+
+    if(AuthCheck::groupRights($group)):
+      $group->update([
+        'name' => $request->name,
+        'info' => $request->info,
+        'type' => $type,
+      ]);
+    endif;
+
+    $view = redirect('/groups');
     return $view;
   }
 
@@ -89,12 +125,15 @@ class HomeController extends Controller
   public function items(Group $group){
     $chunkyItems = Card::chunkIdWithName($group->items()->get(),5);
 
+    $rights = AuthCheck::groupRights($group);
+
     $view = view('items.index', [
       'chunks' => $chunkyItems,
       'title' => 'ITEMS',
       'url1' => '/item/',
       'url2' => '/edit',
       'group' => $group,
+      'rights' => $rights,
     ]);
 
     // $view = view('items.index',[
@@ -115,6 +154,7 @@ class HomeController extends Controller
   public function editItem(Item $item){
     $view = view('items.edit', [
       'item' => $item,
+      'rights' => AuthCheck::groupRights($item->group()->get()[0])
     ]);
 
     return $view;
@@ -132,11 +172,13 @@ class HomeController extends Controller
   }
 
   public function updateItem(Item $item, Request $request){
-    $item->update([
-      'name' => $request->name,
-      'info' => $request->info,
-      'chance' => $request->chance,
-    ]);
+    if(AuthCheck::groupRights($item->group()->get()[0])):
+      $item->update([
+        'name' => $request->name,
+        'info' => $request->info,
+        'chance' => $request->chance,
+      ]);
+    endif;
 
     $view = redirect('/group/'.$item->group()->get()[0]->id.'/items');
 
@@ -186,6 +228,7 @@ class HomeController extends Controller
       'slots' => $chunkySlots,
       'styles' => $chunkyStyles,
       'card' => $card,
+      'owner' => AuthCheck::ownsCard($card),
     ]);
 
     return $view;
@@ -193,20 +236,27 @@ class HomeController extends Controller
   }
 
   public function updateCard(Card $card, Request $request){
-    $card->update([
-      'slots' => serialize($request->input('slot')),
-      'styles' => serialize($request->input('style')),
-    ]);
+    if(AuthCheck::ownsCard($card)):
+      $card->update([
+        'slots' => serialize($request->input('slot')),
+        'styles' => serialize($request->input('style')),
+      ]);
+    endif;
     $view = redirect('/card/'.$card->id);
 
     return $view;
   }
 
+  // for ajax form posts on bingo card click
   public function ajaxPost(Card $card, Request $request){
-    $data = $card->update([
-      'slots' => serialize($request->input('slot')),
-      'styles' => serialize($request->input('style')),
-    ]);
+    if(AuthCheck::ownsCard($card)):
+      $data = $card->update([
+        'slots' => serialize($request->input('slot')),
+        'styles' => serialize($request->input('style')),
+      ]);
+    else:
+      $data = 1;
+    endif;
     
     return response()->json($data, 200);
   }

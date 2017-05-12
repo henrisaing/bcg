@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<form action="/card/{{$card->id}}/update" method="post" formId="{{$card->id}}" func="/card/{{$card->id}}/ajax-post" id="form" class="ajax-form">
-{{csrf_field()}}
+<?php if($owner): ?>
+  <form action="/card/{{$card->id}}/update" method="post" formId="{{$card->id}}" func="/card/{{$card->id}}/ajax-post" id="form" class="ajax-form">
+  {{csrf_field()}}
+<?php endif; ?>
 <!-- <button type="submit">update card</button> -->
 <table class="bingo-table">
   <thead>
@@ -26,7 +28,9 @@
   </tbody>
 </table>
 
+<?php if($owner): ?>
 </form>
+<?php endif; ?>
 <?php if(App::environment('local')): ?>
   <h3>debug</h3>
   <?php print_r($styles) ?>
