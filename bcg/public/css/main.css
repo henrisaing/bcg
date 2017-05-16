@@ -160,3 +160,10 @@ div.full{
     height:40px;
   }
 }
+
+@media print{
+  td{
+    border:1px solid black;
+  }
+  
+}
