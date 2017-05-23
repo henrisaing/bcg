@@ -34,6 +34,7 @@ class HomeController extends Controller
     ]);
   }
 
+  // moved to GROUPCONTROLLER
   public function new(){
     $view = view('groups.new',[
       'admin' => AuthCheck::isAdmin(),
@@ -42,6 +43,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to GC
   public function editGroup(Group $group){
     $view = view('groups.edit', [
       'group' => $group,
@@ -51,6 +53,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to GC
   public function deleteGroup(Group $group){
     if(AuthCheck::groupRights($group)):
       $group->delete();
@@ -61,6 +64,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to gc
   public function create(Request $request){
     $type = 'private';
 
@@ -81,6 +85,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to gc
   public function updateGroup(Request $request, Group $group){
     $type = 'private';
 
@@ -102,6 +107,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to GC
   public function groups(){
     $chunkyGroups = Card::chunkIdWithName(Card::getGroups(),5);
     // $view = view('groups.index', [
@@ -121,7 +127,7 @@ class HomeController extends Controller
   }
 
   // items
-
+  // moved to IM
   public function items(Group $group){
     $chunkyItems = Card::chunkIdWithName($group->items()->get(),5);
 
@@ -144,6 +150,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to IM
   public function newItem(Group $group){
     $view = view('items.new', [
       'group' => $group,
@@ -151,6 +158,8 @@ class HomeController extends Controller
 
     return $view;
   }
+
+  // moved to IM
   public function editItem(Item $item){
     $view = view('items.edit', [
       'item' => $item,
@@ -160,6 +169,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to im
   public function createItem(Request $request, Group $group){
     $group->items()->create([
       'name' => $request->name,
@@ -171,6 +181,8 @@ class HomeController extends Controller
     return $view;
   }
 
+
+  // moved to im
   public function updateItem(Item $item, Request $request){
     if(AuthCheck::groupRights($item->group()->get()[0])):
       $item->update([
@@ -185,6 +197,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to CC
   public function generateCard(Group $group){
 
     $view = view('card.bingo', [
@@ -196,6 +209,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to CC
   public function genCard(Group $group){
     $view = view('card.generate', [
       'group' => $group,
@@ -206,6 +220,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to CC
   public function saveCard(Request $request){
     $card = Auth::user()->cards()->create([
       'slots' => serialize($request->input('slot')),
@@ -217,6 +232,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to CC
   public function userCard(Card $card){
     $slots = unserialize($card->slots);
     $styles = unserialize($card->styles);
@@ -235,6 +251,7 @@ class HomeController extends Controller
     // return $card;
   }
 
+  // moved to CC
   public function updateCard(Card $card, Request $request){
     if(AuthCheck::ownsCard($card)):
       $card->update([
@@ -247,6 +264,7 @@ class HomeController extends Controller
     return $view;
   }
 
+  // moved to CC
   // for ajax form posts on bingo card click
   public function ajaxPost(Card $card, Request $request){
     if(AuthCheck::ownsCard($card)):
@@ -261,6 +279,7 @@ class HomeController extends Controller
     return response()->json($data, 200);
   }
 
+  // moved to cc
   public function myCards(){
     $cards = Card::myCards(5);
   
