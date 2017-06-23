@@ -1,5 +1,5 @@
 <!-- resources/views/card/bingo.blade.php -->
-@extends('layouts.app')
+@extends('layouts.bingo')
 @section('content')
 <p class="center-text">
   <a class="ajax-main" func="/group/{{$group->id}}/gen">

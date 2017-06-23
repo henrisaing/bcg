@@ -1,5 +1,5 @@
 <!-- resources/views/card/cards.blade.php -->
-@extends('layouts.app')
+@extends('layouts.bingo')
 @section('content')
 <h2>My Cards</h2>
 

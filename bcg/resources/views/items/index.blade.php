@@ -1,5 +1,5 @@
 <!-- resources/views/items/index.blade.php -->
-@extends('layouts.app')
+@extends('layouts.bingo')
 @section('content')
 <p class="center-text">
 

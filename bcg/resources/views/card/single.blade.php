@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bingo')
 @section('content')
 <?php if($owner): ?>
   <form action="/card/{{$card->id}}/update" method="post" formId="{{$card->id}}" func="/card/{{$card->id}}/ajax-post" id="form" class="ajax-form">

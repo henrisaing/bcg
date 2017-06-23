@@ -31,6 +31,75 @@
 }
 /*end http://stackoverflow.com/questions/19064987/html-css-popup-div-on-text-click#19065024*/
 
+#contain{
+  padding-top:60px;
+}
+
+/************************
+NAV
+************************/
+/*TOP NAV*/
+nav ul {
+  display:block;
+  position:fixed;
+  width:100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  z-index:100;
+}
+
+nav li {
+  float: left;
+  color: white;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+nav li a:hover {
+  background-color: #111;
+}
+
+/*SIDE NAV*/
+#side-nav ul {
+  margin-top:50px;
+  display:block;
+  list-style-type: none;
+  /*margin: 0;*/
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  height:100%;
+  position:fixed;
+  overflow: hidden;
+  z-index:10;
+}
+
+#side-nav li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+#side-nav li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+/************************
+END NAV
+************************/
 a.lightbox-close{
   text-align:right;
 }
@@ -43,6 +112,10 @@ a.lightbox-close{
 
 .hide{
   display:none;
+}
+
+.float-right{
+  float:right;
 }
 
 table td button, table th button{ 
