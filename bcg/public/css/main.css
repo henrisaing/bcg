@@ -31,6 +31,10 @@
 }
 /*end http://stackoverflow.com/questions/19064987/html-css-popup-div-on-text-click#19065024*/
 
+html,body{
+  background-color:#fff;
+}
+
 #contain{
   padding-top:60px;
 }
@@ -47,18 +51,20 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #ffffff;
+  /*background-color: #22aa55;*/
+  /*background-color: #333;*/
   z-index:100;
 }
 
 nav li {
   float: left;
-  color: white;
+  color: #22aa55;
 }
 
 nav li a {
   display: block;
-  color: white;
+  color: #22aa55;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -66,7 +72,8 @@ nav li a {
 
 /* Change the link color to #111 (black) on hover */
 nav li a:hover {
-  background-color: #111;
+  background-color: #22aa55;
+  color:#111;
 }
 
 /*SIDE NAV*/

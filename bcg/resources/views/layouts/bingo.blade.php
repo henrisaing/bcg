@@ -25,16 +25,15 @@
   <div id="app">
     <nav id="nav-bar-top">
       <ul>
-        <?php if(isset($blogSet)): ?>
-          <li>
-          <a href="/{{$blog->name}}">
-            {{str_replace('-',' ',$blog->name)}}
-          </a>
-          </li>
-        <?php endif; ?>
         <li>
           <a href="/home">
             Home
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url('/home') }}">
+              <img src="/img/logo.jpg" class="" height="35px;">
           </a>
         </li>
 
