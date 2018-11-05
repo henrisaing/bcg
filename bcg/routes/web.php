@@ -16,28 +16,28 @@ Route::get('/', function () {
 });
 
 // groups
-Route::get('/groups', 'HomeController@groups');
-Route::get('/group/new', 'HomeController@new');
-Route::post('/group/create', 'HomeController@create');
-Route::get('/group/{group}/edit', 'HomeController@editGroup');
-Route::post('/group/{group}/update', 'HomeController@updateGroup');
-Route::delete('/group/{group}/delete', 'HomeController@deleteGroup');
+Route::get('/groups', 'GroupController@groups');
+Route::get('/group/new', 'GroupController@new');
+Route::post('/group/create', 'GroupController@create');
+Route::get('/group/{group}/edit', 'GroupController@editGroup');
+Route::post('/group/{group}/update', 'GroupController@updateGroup');
+Route::delete('/group/{group}/delete', 'GroupController@deleteGroup');
 
 // items
-Route::get('/group/{group}/items', 'HomeController@items');
-Route::get('/group/{group}/items/new', 'HomeController@newItem');
-Route::post('/group/{group}/items/create', 'HomeController@createItem');
-Route::post('/item/{item}/update', 'HomeController@updateItem');
-Route::get('/item/{item}/edit', 'HomeController@editItem');
+Route::get('/group/{group}/items', 'ItemController@items');
+Route::get('/group/{group}/items/new', 'ItemController@newItem');
+Route::post('/group/{group}/items/create', 'ItemController@createItem');
+Route::post('/item/{item}/update', 'ItemController@updateItem');
+Route::get('/item/{item}/edit', 'ItemController@editItem');
 
 // cards
-Route::get('/group/{group}/generate', 'HomeController@generateCard');
-Route::get('group/{group}/gen', 'HomeController@genCard');
-Route::post('/card/new', 'HomeController@saveCard');
-Route::get('/card/{card}', 'HomeController@userCard');
-Route::post('/card/{card}/update', 'HomeController@updateCard');
-Route::get('/mycards', 'HomeController@myCards');
-Route::post('/card/{card}/ajax-post', 'HomeController@ajaxPost');
+Route::get('/group/{group}/generate', 'CardController@generateCard');
+Route::get('group/{group}/gen', 'CardController@genCard');
+Route::post('/card/new', 'CardController@saveCard');
+Route::get('/card/{card}', 'CardController@userCard');
+Route::post('/card/{card}/update', 'CardController@updateCard');
+Route::get('/mycards', 'CardController@myCards');
+Route::post('/card/{card}/ajax-post', 'CardController@ajaxPost');
 
 Auth::routes();
 

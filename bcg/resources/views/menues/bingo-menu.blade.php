@@ -19,7 +19,7 @@ $url1 (end of url after id)
             <a class="lightbox-open" func="{{$url1}}{{$key}}{{$url2}}">
               <div class="full center-div">
               {{$value}}
-            </div>
+              </div>
             </a>
           <?php elseif ($value != '' && $url1 != 'nolink'): ?>
             <a href="{{$url1}}{{$key}}{{$url2}}">
@@ -29,9 +29,11 @@ $url1 (end of url after id)
             </a>
           </td>
           <?php else: ?>
-            <div class="full center-div">
-              {{$value}}
-            </div>
+            <a func="/group/{{$group->id}}/items/new" class="lightbox-open">
+              <div class="full center-div">
+                {{$value}}
+              </div>
+            </a>
           </td>
           <?php endif ?>
         <?php endforeach ?>

@@ -15,6 +15,7 @@
   'title' => $title,
   'url1' => $url1,
   'url2' => $url2,
+  'group' => $group,
   'ajax' => 'true',
 ])
 

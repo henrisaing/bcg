@@ -52,11 +52,13 @@ class ItemController extends Controller
   }
 
   public function createItem(Request $request, Group $group){
-    $group->items()->create([
-      'name' => $request->name,
-      'info' => $request->info,
-      'chance' => $request->chance,
-    ]);
+    if(AuthCheck::groupRights($group)):
+      $group->items()->create([
+        'name' => $request->name,
+        'info' => $request->info,
+        'chance' => $request->chance,
+      ]);
+    endif;
     $view = redirect('/group/'.$group->id.'/items');
 
     return $view;
