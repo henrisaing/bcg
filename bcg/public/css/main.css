@@ -32,7 +32,7 @@
 /*end http://stackoverflow.com/questions/19064987/html-css-popup-div-on-text-click#19065024*/
 
 html,body{
-  background-color:#fff;
+  background-color:#333;
 }
 
 #contain{
@@ -53,7 +53,7 @@ nav ul {
   overflow: hidden;
   background-color: #ffffff;
   /*background-color: #22aa55;*/
-  /*background-color: #333;*/
+  background-color: #333;
   z-index:100;
 }
 
@@ -172,9 +172,11 @@ table.bingo-table td, table.menu-table td{
   width:80px;
   height:80px;
   text-align:center;
-  background-color:#eee;
-  color:black;
+  background-color:#777;
+  color:White;
   cursor:pointer;
+  font-weight:bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   /*margin:5px;*/
 }
 
