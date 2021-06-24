@@ -1,3 +1,7 @@
+<?php if (isset($_SESSION) == false): ?>
+  <?php session_start(); ?>
+<?php endif ?>
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -13,6 +17,12 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
+  <?php if (Session::get('theme') !== null): ?>
+    <?php if (Session::get('theme') == 'dark'): ?>
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/dark.css') }}">
+    <?php endif; ?> 
+  <?php endif ?>
 
   <!-- Scripts -->
   <script>
@@ -37,6 +47,30 @@
           </a>
         </li>
 
+    <form id="theme" action="/session" method="post">
+      {{ csrf_field() }}
+      <?php if (Session::get('theme') !== null): ?>
+        <?php if (Session::get('theme') == 'dark'): ?>
+          <input type="text" name="session_theme" readonly hidden value='light'>
+        <?php else: ?>
+          <input type="text" name="session_theme" readonly hidden value='dark'>
+        <?php endif; ?> 
+      <?php else: ?>
+        <input type="text" name="session_theme" readonly hidden value='dark'>
+      <?php endif ?>
+    </form>
+
+    <li class="float-right">
+    <?php if (Session::get('theme') !== null): ?>
+        <?php if (Session::get('theme') == 'dark'): ?>
+          <a href="/session" onclick="event.preventDefault(); document.getElementById('theme').submit();">Light Mode</a>
+        <?php else: ?>
+          <a href="/session" onclick="event.preventDefault(); document.getElementById('theme').submit();">Dark Mode</a>
+        <?php endif; ?> 
+      <?php else: ?>
+        <a href="/session" onclick="event.preventDefault(); document.getElementById('theme').submit();">Dark Mode</a>
+    <?php endif ?> 
+    </li>
         @if (Auth::guest())
           <li class="float-right"><a href="{{ route('login') }}">Login</a></li>
           <li class="float-right"><a href="{{ route('register') }}">Register</a></li>

@@ -47,6 +47,8 @@ Route::get('/test', function(){
   return view('test.test');
 });
 
+Route::post('/session', 'SessionController@theme');
+
 //redirect sample, dirty, should be done on server level
 Route::get('sample', function(){
   return redirect('group/9/generate');
