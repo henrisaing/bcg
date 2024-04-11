@@ -23,6 +23,14 @@ Route::get('/group/{group}/edit', 'GroupController@editGroup');
 Route::post('/group/{group}/update', 'GroupController@updateGroup');
 Route::delete('/group/{group}/delete', 'GroupController@deleteGroup');
 
+//api
+Route::get('/api/getall', 'ApiController@getAll');
+Route::get('/api/{group}', 'ApiController@group');
+Route::get('/api/{group}/card', 'ApiController@getCard');
+Route::get('/api/{group}/{name}/{freq}', 'ApiController@addItem');
+Route::get('/api/{name}/{type}', 'ApiController@createGroup');
+Route::get('/api/{item}/{name}/{freq}/update', 'ApiController@updateItem');
+
 // items
 Route::get('/group/{group}/items', 'ItemController@items');
 Route::get('/group/{group}/items/new', 'ItemController@newItem');

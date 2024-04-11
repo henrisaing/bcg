@@ -18,11 +18,10 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
-  <?php if (Session::get('theme') !== null): ?>
-    <?php if (Session::get('theme') == 'dark'): ?>
+  <?php if (Session::get('theme') == null || Session::get('theme') == 'dark'): ?>
       <link rel="stylesheet" type="text/css" href="{{ asset('css/dark.css') }}">
-    <?php endif; ?> 
-  <?php endif ?>
+  <?php endif; ?>
+  
 
   <!-- Scripts -->
   <script>

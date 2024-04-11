@@ -8,6 +8,7 @@ use App\Item;
 use Auth;
 use App\Card;
 use App\AuthCheck;
+use App\User;
 
 class GroupController extends Controller
 {
@@ -106,4 +107,5 @@ class GroupController extends Controller
 
     return $view;
   }
+  
 }
