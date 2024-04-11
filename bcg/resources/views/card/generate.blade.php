@@ -16,7 +16,7 @@
     <?php foreach ($card as $row): ?>
       <tr>
         <?php foreach ($row as $thing): ?>
-          <td position={{$counter}}>{{$thing}}</td>
+          <td position={{$counter}} title={{$thing}}>{{$thing}}</td>
           <input type="hidden" name="slot[]" value="{{$thing}}">
           <input type="hidden" id="{{$counter}}" name="style[]" value="none">
           <?php $counter++; ?>

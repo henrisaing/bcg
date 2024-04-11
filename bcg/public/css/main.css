@@ -168,13 +168,16 @@ table.bingo-table td, table.menu-table td{
   /*border:1px solid black;*/
   width:80px;
   height:80px;
+  max-width: 80px!important;
+  max-height: 80px!important;
   text-align:center;
   background-color:#777;
   color:White;
   cursor:pointer;
   font-weight:bold;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  /*margin:5px;*/
+  overflow: hidden;
+  /* word-break: break-all; */
 }
 
 table.bingo-table th, table.menu-table th{
